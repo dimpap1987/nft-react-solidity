@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract MyNFT is ERC721Enumerable, Ownable {
     using Strings for uint256;
     uint256 public cost = 0.001 ether;
-    uint256 public maxSupply = 99;
+    uint256 public maxSupply = 1000;
 
     constructor(
         string memory _name,
@@ -18,10 +18,6 @@ contract MyNFT is ERC721Enumerable, Ownable {
         uint256 supply = totalSupply();
         require(supply <= maxSupply, "Sorry, all NFTs have been minted!");
         require(msg.value > 0 ether, "Ether too low for minting!");
-
-        if (msg.sender != owner()) {
-            require(msg.value >= cost);
-        }
 
         _safeMint(msg.sender, supply + 1);
     }

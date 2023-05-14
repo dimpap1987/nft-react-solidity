@@ -1,0 +1,24 @@
+token.mint({value: ethers.utils.parseEther("0.04")});
+token.mint({nonce: 1});
+const nonce = await signer0.getTransactionCount();
+const signer0 = await ethers.provider.getSigner(0);
+token.mint({nonce: 0.001ether});
+token.mint({nonce: 0,001ether});
+token.mint({nonce: 0.01ether});
+const tx = await token.mint({nonce: 0.01ether});
+const tx = await token.mint({});
+      nonce: 0.01ether
+await token.mint({
+const tx = await token.mint(overrides);
+// Call the mint() function with the overrides parameter
+};
+djust gas price as needed
+  gasLimit: ethers.BigNumber.f  gasPrice: ethers.utils.parseUnits("30", "gwei"), // a
+const overrides = {
+const minted = await token.mint()
+const token = await Token.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3")
+const Token = await ethers.getContractFactory("MyNFT")
+const token = await (await ethers.getContractFactoF642f64180aa3")
+const mintToken = await myContract.mint(1, { value: ethers.utils.parseEther("0.3") });
+myContract
+const myContract = await hre.ethers.getContractAt("MyNFT", 0x5FbDB2315678afecb367f032d93F642f64180aa3);

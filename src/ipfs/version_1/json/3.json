@@ -1,0 +1,18 @@
+{
+  "image": "https://ipfs.io/ipfs/QmRFghmDEQDFN61c258MZ4fxyYp97R5QDb4wjqEvytwMHH/3.jpg",
+  "name": "The Kiss",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Gustav Klimt"
+    },
+    {
+      "trait_type": "Estimated date",
+      "value": "1907 to 1908"
+    },
+    {
+      "trait_type": "Where to see it",
+      "value": "Upper Belvedere museum"
+    }
+  ]
+}

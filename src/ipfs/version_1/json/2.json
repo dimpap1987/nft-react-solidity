@@ -1,0 +1,18 @@
+{
+  "image": "https://ipfs.io/ipfs/QmRFghmDEQDFN61c258MZ4fxyYp97R5QDb4wjqEvytwMHH/2.jpg",
+  "name": "The Scream",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Edvard Munch"
+    },
+    {
+      "trait_type": "Estimated date",
+      "value": "1893"
+    },
+    {
+      "trait_type": "Where to see it",
+      "value": "National Museum (Oslo, Norway – opening in 2020) and Munch Museum (Oslo – through May 2020)"
+    }
+  ]
+}

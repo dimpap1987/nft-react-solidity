@@ -1,0 +1,18 @@
+{
+  "image": "https://ipfs.io/ipfs/QmRFghmDEQDFN61c258MZ4fxyYp97R5QDb4wjqEvytwMHH/4.jpg",
+  "name": "The Starry Night",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Vincent van Gogh"
+    },
+    {
+      "trait_type": "Estimated date",
+      "value": "1889"
+    },
+    {
+      "trait_type": "Where to see it",
+      "value": "Museum of Modern Art"
+    }
+  ]
+}

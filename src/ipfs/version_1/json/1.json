@@ -1,0 +1,18 @@
+{
+  "image": "https://ipfs.io/ipfs/QmRFghmDEQDFN61c258MZ4fxyYp97R5QDb4wjqEvytwMHH/1.jpg",
+  "name": "The Birth of Venus",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Sandro Botticelli"
+    },
+    {
+      "trait_type": "Estimated date",
+      "value": "1485"
+    },
+    {
+      "trait_type": "Where to see it",
+      "value": "Le Gallerie Degli Uffizi"
+    }
+  ]
+}

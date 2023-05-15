@@ -1,0 +1,18 @@
+{
+  "image": "https://ipfs.io/ipfs/QmRFghmDEQDFN61c258MZ4fxyYp97R5QDb4wjqEvytwMHH/9.jpg",
+  "name": "The Last Supper",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Leonardo da Vinci"
+    },
+    {
+      "trait_type": "Estimated date",
+      "value": "1495 to 1498"
+    },
+    {
+      "trait_type": "Where to see it",
+      "value": "Santa Maria delle Grazie"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "image": "https://ipfs.io/ipfs/QmRFghmDEQDFN61c258MZ4fxyYp97R5QDb4wjqEvytwMHH/6.jpg",
+  "name": "Johannes Vermeer",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Johannes Vermeer"
+    },
+    {
+      "trait_type": "Estimated date",
+      "value": "1665"
+    },
+    {
+      "trait_type": "Where to see it",
+      "value": "Mauritshuis"
+    }
+  ]
+}

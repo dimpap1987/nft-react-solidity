@@ -14,8 +14,7 @@ contract AwesomeNFT is ERC721URIStorage, Ownable {
     // Token Uri properties
     string public uriPrefix;
     string public uriSuffix = ".json";
-    string private baseURI;
-    //
+
     uint256 public cost = 0.001 ether;
     uint256 public maxSupply = 1000;
     uint256 public totalNft;

@@ -3,7 +3,7 @@ const { ethers } = require("hardhat");
 
 const contract = {
   contractName: "AwesomeNFT",
-  tokenName: "Famous Paintings",
+  tokenName: "Awesome NFTs",
   tokenSymbol: "AWSNFT",
   tokenURI:
     "https://ipfs.io/ipfs/QmXWTYxHaEeVPrXa7FoC5sQzdnyBTtDoziTPtgmrceXrCf/",

@@ -2,7 +2,7 @@ require("dotenv").config();
 const { create, globSource } = require("ipfs-http-client");
 const { writeToFolder } = require("./utils");
 
-const path = "./src/ipfs/version_1/json";
+const path = "./src/backend/ipfs/version_1/json";
 
 (async () => {
   try {

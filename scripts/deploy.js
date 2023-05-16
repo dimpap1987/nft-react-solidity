@@ -2,10 +2,11 @@ const { writeToFolder } = require("./utils");
 const { ethers } = require("hardhat");
 
 const contract = {
-  contractName: "AwsomeNFT",
+  contractName: "AwesomeNFT",
   tokenName: "Famous Paintings",
-  tokenSymbol: "FPNT",
-  tokenURI: "https://ipfs.io/ipfs/QmXWTYxHaEeVPrXa7FoC5sQzdnyBTtDoziTPtgmrceXrCf/",
+  tokenSymbol: "AWSNFT",
+  tokenURI:
+    "https://ipfs.io/ipfs/QmXWTYxHaEeVPrXa7FoC5sQzdnyBTtDoziTPtgmrceXrCf/",
   totalNfts: 10,
 };
 
@@ -25,14 +26,18 @@ async function main({
   );
   await contract.deployed();
 
-  await writeToFolder(
-    "./src/metadata/smart-contract-address.txt",
+  writeToFolder(
+    "./src/backend/metadata/smart-contract-address.txt",
     `address=${contract.address}\r\n`
   );
-  console.log("Deployed contract address", contract.address);
+  return contract;
 }
 
-main(contract).catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main(contract)
+  .then((contract) => {
+    console.log("Deployed contract address", contract.address);
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });

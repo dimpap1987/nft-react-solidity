@@ -23,8 +23,9 @@ module.exports = {
     },
   },
   paths: {
-    sources: './src/contracts',
-    artifacts: './src/abis',
+    sources: './src/backend/contracts',
+    artifacts: './src/backend/abis',
+    tests: "./src/backend/test"
   },
   mocha: {
     timeout: 40000,

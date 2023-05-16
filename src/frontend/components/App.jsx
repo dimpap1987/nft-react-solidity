@@ -1,8 +1,18 @@
+import { useEffect } from "react";
+import { isWalletConnected } from "../services/Web3.service";
+import Alert from "./Alert";
+import Header from "./Header";
+
 const App = () => {
+  useEffect(async () => {
+    isWalletConnected();
+  }, []);
+
   return (
-    <div className="min-h-screen">
-      <h4 className="text-3xl font-bold underline">Hi !!!</h4>
-    </div>
+    <main className="min-h-screen">
+      <Header />
+      <Alert />
+    </main>
   );
 };
 export default App;

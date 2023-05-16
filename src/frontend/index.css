@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
+:root {
+  --primary-bg-color: #151c25;
+  --primary-shadow-success: #29e367;
+  --primary-shadow-error: #e32929;
+}
+
 * {
   padding: 0;
   margin: 0;

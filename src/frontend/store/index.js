@@ -1,7 +1,7 @@
 import { createGlobalState } from "react-hooks-global-state";
 
 const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
-  alert: { show: false, msg: "", color: "" },
+  alert: { show: false, msg: "", type: "" },
   loading: { show: false, msg: "" },
   connectedAccount: "",
   contract: null,
@@ -9,12 +9,12 @@ const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   transactions: [],
 });
 
-const setAlert = (msg, color = "green") => {
-  setGlobalState("alert", { show: true, msg, color });
+const setAlert = (msg, type = "success", duration = 5000) => {
+  setGlobalState("alert", { show: true, msg, type });
   setTimeout(() => {
-    setGlobalState("alert", { show: false, msg: "", color });
+    setGlobalState("alert", { show: false, msg: "", type });
     setGlobalState("loading", false);
-  }, 5000);
+  }, duration);
 };
 
 const setLoadingMsg = (msg) => {

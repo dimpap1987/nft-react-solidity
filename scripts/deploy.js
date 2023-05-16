@@ -27,8 +27,8 @@ async function main({
   await contract.deployed();
 
   writeToFolder(
-    "./src/backend/metadata/smart-contract-address.txt",
-    `address=${contract.address}\r\n`
+    "./src/backend/metadata/smart-contract-address.json",
+    JSON.stringify({ address: contract.address }, null, 4)
   );
   return contract;
 }

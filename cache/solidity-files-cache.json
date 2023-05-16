@@ -477,8 +477,8 @@
       ]
     },
     "C:\\Projects\\me\\dapp\\src\\backend\\contracts\\AwesomeNFT.sol": {
-      "lastModificationDate": 1684239251471,
-      "contentHash": "04f9ed43892291f8b35598adc3859a77",
+      "lastModificationDate": 1684260973225,
+      "contentHash": "b02096d43000d72a1b9a97230a65bf00",
       "sourceName": "src/backend/contracts/AwesomeNFT.sol",
       "solcConfig": {
         "version": "0.8.11",

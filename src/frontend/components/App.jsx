@@ -9,7 +9,7 @@ import ListItems from "./ListItems";
 const App = () => {
   useEffect(async () => {
     await isWalletConnected();
-    await loadNfts();
+    loadNfts();
   }, []);
 
   return (

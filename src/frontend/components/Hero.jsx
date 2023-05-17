@@ -10,7 +10,7 @@ const Hero = () => {
 
     payToMint()
       .then(() => {
-        setAlert("Minting Successful...", "success");
+        setAlert("Finished Minting...", "success");
         loadNfts();
       })
       .catch(() => setAlert("Try again later...", "error"))

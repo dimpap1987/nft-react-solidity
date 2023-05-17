@@ -3,7 +3,7 @@ import { createGlobalState } from "react-hooks-global-state";
 const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   alert: { show: false, msg: "", type: "" },
   loading: { show: false, msg: "" },
-  connectedAccount: "",
+  connectedAccount: null,
   contract: null,
   nfts: [],
   transactions: [],

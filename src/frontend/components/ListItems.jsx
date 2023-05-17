@@ -28,7 +28,7 @@ const ListItems = () => {
   }, [nfts]);
 
   return (
-    <section className="w-4/5 m-auto">
+    <section className="md:w-4/5 m-auto">
       <div className="list-items-container">
         {ipfsMetadata?.map((nft) => (
           <div className="w-80" key={nft.id}>

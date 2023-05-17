@@ -47,40 +47,59 @@ const reportError = (error) => {
   throw new Error("No ethereum object.");
 };
 
-// const getContract = () => {
-//   const { ethereum } = window;
-//   const contractAddress = address.address;
-//   const contractAbi = abi.abi;
-//   const connectedAccount = getGlobalState("connectedAccount");
+const getContract = () => {
+  if (!getGlobalState("connectedAccount")) return;
+  const { ethereum } = window;
+  if (!ethereum) throw new Error("Please install Metamask");
+  const contractAddress = address.address;
+  const contractAbi = abi.abi;
+  const cachedContract = getGlobalState("contract");
 
-//   if (connectedAccount) {
-//     const provider = new ethers.providers.Web3Provider(ethereum);
-//     const signer = provider.getSigner();
-//     const contract = new ethers.Contract(contractAddress, contractAbi, signer);
+  if (!cachedContract) {
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, contractAbi, signer);
+    setGlobalState("contract", contract);
+    return contract;
+  } else {
+    return cachedContract;
+  }
+};
 
-//     return contract;
-//   } else {
-//     return getGlobalState("contract");
-//   }
-// };
+const payToMint = async () => {
+  try {
+    const { ethereum } = window;
+    if (!ethereum) return alert("Please install Metamask");
+    const connectedAccount = getGlobalState("connectedAccount");
+    const contract = getContract();
+    const amount = ethers.utils.parseEther("0.001");
+    await (
+      await contract.mint({
+        from: connectedAccount,
+        value: amount._hex,
+      })
+    ).wait();
+  } catch (error) {
+    reportError(error);
+  }
+};
 
-// const payToMint = async () => {
-//   try {
-//     const { ethereum } = window;
-//     if (!ethereum) return alert("Please install Metamask");
-//     const connectedAccount = getGlobalState("connectedAccount");
-//     const contract = getEtheriumContract();
-//     const amount = ethers.utils.parseEther("0.001");
+const loadNfts = async () => {
+  const contract = getContract("contract");
+  let nfts = await contract?.getMintedNFTs();
 
-//     await contract.payToMint({
-//       from: connectedAccount,
-//       value: amount._hex,
-//     });
+  nfts = formatNfts(nfts);
+  setGlobalState("nfts", nfts);
+};
 
-//     window.location.reload();
-//   } catch (error) {
-//     reportError(error);
-//   }
-// };
+const formatNfts = (nfts) =>
+  nfts
+    ?.map((nft) => ({
+      id: Number(nft.id),
+      url: nft.tokenUri,
+      buyer: nft.buyer,
+      cost: parseInt(nft.cost._hex) / 10 ** 18,
+      timestamp: new Date(nft.timestamp.toNumber() * 1000).toLocaleString(),
+    }));
 
-export { isWalletConnected, connectWallet };
+export { isWalletConnected, connectWallet, getContract, payToMint, loadNfts };

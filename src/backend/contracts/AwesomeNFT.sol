@@ -28,7 +28,7 @@ contract AwesomeNFT is ERC721URIStorage, Ownable {
         uint256 timestamp;
     }
 
-    MintedStruct[] minted;
+    MintedStruct[] public minted;
 
     event Minted(
         uint256 id,
@@ -54,6 +54,7 @@ contract AwesomeNFT is ERC721URIStorage, Ownable {
         uint tokenId = totalItems.current();
 
         require(tokenId <= maxSupply, "Sorry, all NFTs have been minted!");
+        require(tokenId <= totalNft, "Sorry, all NFTs have been minted!");
         require(msg.value >= cost, "Ether too low for minting!");
 
         _safeMint(msg.sender, tokenId);

@@ -1,4 +1,4 @@
-import { useGlobalState } from "../store";
+import { setGlobalState, useGlobalState } from "../store";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { BsCheck2Circle } from "react-icons/bs";
 
@@ -8,8 +8,8 @@ const Alert = () => {
     <div
       className={`fixed top-0 left-0 w-screen h-screen
       flex items-center justify-center bg-black 
-      bg-opacity-50 transform transition-transform
-      duration-300 ${alert.show ? "scale-100" : "scale-0"}`}
+      bg-opacity-40 transform transition-transform
+      duration-200 ${alert.show ? "scale-100" : "scale-0"}`}
     >
       <div
         className={`flex flex-col justify-center items-center
@@ -26,9 +26,15 @@ const Alert = () => {
         min-w-min py-3 px-10`}
       >
         {alert.type == "success" ? (
-          <BsCheck2Circle className="text-green-600 text-4xl" />
+          <BsCheck2Circle
+            className="text-green-600 text-4xl"
+            onClick={() => setGlobalState("alert", { show: false })}
+          />
         ) : alert.type == "error" ? (
-          <FaRegTimesCircle className="text-red-600 text-4xl" />
+          <FaRegTimesCircle
+            className="text-red-600 text-4xl cursor-pointer"
+            onClick={() => setGlobalState("alert", { show: false })}
+          />
         ) : (
           ""
         )}

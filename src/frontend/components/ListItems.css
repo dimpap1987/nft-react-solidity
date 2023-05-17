@@ -1,0 +1,7 @@
+.list-items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(318px, 1fr));
+  grid-gap: 22px;
+  justify-items: center;
+  padding: 1.5rem 0;
+}

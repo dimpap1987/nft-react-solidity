@@ -17,15 +17,8 @@ const setAlert = (msg, type = "success", duration = 5000) => {
   }, duration);
 };
 
-const setLoadingMsg = (msg) => {
-  const loading = getGlobalState("loading");
-  setGlobalState("loading", { ...loading, msg });
+const setLoading = ({ show, msg = null }) => {
+  setGlobalState("loading", { show, msg });
 };
 
-export {
-  useGlobalState,
-  setGlobalState,
-  getGlobalState,
-  setAlert,
-  setLoadingMsg,
-};
+export { useGlobalState, setGlobalState, getGlobalState, setAlert, setLoading };

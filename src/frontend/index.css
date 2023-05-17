@@ -16,6 +16,12 @@ body {
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(43, 63, 168);
+  background: radial-gradient(
+    circle,
+    rgba(1, 9, 101, 1) 0%,
+    rgba(109, 42, 66, 1) 100%
+  );
 }
 
 @tailwind base;

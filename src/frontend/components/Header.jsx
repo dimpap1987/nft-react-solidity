@@ -22,7 +22,7 @@ const Header = () => {
       {connectedAccount ? (
         <button
           className="shadow-xl shadow-black text-white 
-        bg-[#1A237E] hover:bg-[#3F51B5] md:text-xs p-2
+        bg-[#01097D] hover:bg-[#0109A6] text-xs md:text-base p-2
         rounded-full cursor-pointer"
         >
           {connectedAccount.slice(0, 5) + "..." + connectedAccount.slice(-4)}
@@ -30,7 +30,7 @@ const Header = () => {
       ) : (
         <button
           className="shadow-xl shadow-black text-white 
-        bg-[#1A237E] hover:bg-[#3F51B5] md:text-xs p-2
+        bg-[#01097D] hover:bg-[#0109A6] text-xs md:text-base p-2
         rounded-full cursor-pointer"
           onClick={connectWallet}
         >

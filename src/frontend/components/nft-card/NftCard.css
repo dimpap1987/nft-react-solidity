@@ -6,10 +6,10 @@
 
 .nft-container {
   background-color: #151515;
+  display: inline-block;
 }
 
 .content {
-  width: 100%;
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 300ms;
@@ -19,13 +19,11 @@
 
 .back {
   background-color: #151515;
-  width: 100%;
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: 5px;
   overflow: hidden;
-  width: 100%;
   height: 100%;
   justify-content: center;
   display: flex;
@@ -33,7 +31,7 @@
   overflow: hidden;
 }
 
-.back::before {
+.back.minted::before {
   content: " ";
   display: block;
   width: 160px;
@@ -48,6 +46,13 @@
     transparent
   );
   animation: rotation_481 5000ms infinite linear;
+}
+
+.back.listed::before {
+  content: " ";
+  width: 100%;
+  height: 100%;
+  background: var(--gold-nft--color);
 }
 
 .back-content {

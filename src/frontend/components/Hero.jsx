@@ -1,7 +1,5 @@
 import { useState } from "react";
-import {
-  getMetadataFromIpfsById
-} from "../services/Utils.service.js";
+import { getMetadataFromIpfsById } from "../services/Utils.service.js";
 import { loadNfts, payToMint } from "../services/Web3.service";
 import { setAlert, setGlobalState } from "../store";
 import NftCard from "./nft-card/NftCard";
@@ -35,31 +33,32 @@ const Hero = () => {
   };
 
   return (
-    <section className="w-4/5 flex justify-center m-auto h-screen">
-      <div>
-        <div className="flex justify-center mt-5 mb-5">
-          <button
-            style={{ background: "var(--primary-color--button)" }}
-            className="shadow-xl shadow-black text-white
+    <section className="w-4/5 m-auto" style={{ height: "86vh" }}>
+      <div className="flex justify-center mt-5 mb-5">
+        <button
+          style={{ background: "var(--primary-color--button)" }}
+          className="shadow-xl shadow-black text-white
              hover:bg-[#bd255f] p-2
             rounded-full cursor-pointer my-4"
-            onClick={onMintNFT}
-          >
-            Mint Now
-          </button>
-        </div>
+          onClick={onMintNFT}
+        >
+          Mint Now
+        </button>
+      </div>
 
-        {mintedNft && (
+      {mintedNft && (
+        <div className="flex justify-center">
           <NftCard
-            nft={mintedNft}
+            nft={{ ...mintedNft, minted: true }}
             // nft={{
             //   image: `https://ipfs.io/ipfs/QmRFghmDEQDFN61c258MZ4fxyYp97R5QDb4wjqEvytwMHH/6.jpg`,
-            //   name : 'image 12',
-            //   id: 3
+            //   name: "image 12",
+            //   id: 3,
+            //   minted: true
             // }}
           />
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 };

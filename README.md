@@ -24,11 +24,11 @@ To run the demo locally follow these steps:
    ```
 2. Start a local blockchain network
    ```sh
-   npx hardhat node
+   npm run node
    ```
 3. Deploy the smart contract
    ```sh
-   npx hardhat run scripts/deploy.js
+   npm run deploy:localhost
    ```
 4. Run the front end app by running `npm start`
 

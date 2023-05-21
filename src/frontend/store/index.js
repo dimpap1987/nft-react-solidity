@@ -9,7 +9,7 @@ const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   transactions: [],
 });
 
-const setAlert = (msg, type = "success", duration = 2500) => {
+const setAlert = (msg, type = "success", duration = 2000) => {
   setGlobalState("alert", { show: true, msg, type });
   setTimeout(() => {
     setGlobalState("alert", { show: false, msg: "", type });

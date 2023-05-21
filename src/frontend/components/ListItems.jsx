@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGlobalState } from "../store";
 import "./ListItems.css";
+import { getMetadataFromIpfs } from "../services/Utils.service.js";
 
 const ListItems = () => {
   const [nfts] = useGlobalState("nfts");
@@ -11,7 +12,7 @@ const ListItems = () => {
     if (nfts?.length > 0) {
       const metadataArray = [];
       for (const nft of nfts) {
-        const metadata = await (await fetch(nft.url)).json();
+        const metadata = await getMetadataFromIpfs(nft.url);
         metadataArray.push({
           id: nft.id,
           ...metadata,

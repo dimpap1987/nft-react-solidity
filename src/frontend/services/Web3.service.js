@@ -71,7 +71,7 @@ const payToMint = async () => {
     const connectedAccount = getGlobalState("connectedAccount");
     const contract = await getContract();
     const amount = ethers.utils.parseEther("0.001");
-    await (
+    return await (
       await contract.mint({
         from: connectedAccount,
         value: amount._hex,

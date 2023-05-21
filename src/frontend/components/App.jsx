@@ -3,8 +3,8 @@ import { isWalletConnected, loadNfts } from "../services/Web3.service";
 import Alert from "./Alert";
 import Header from "./Header";
 import Hero from "./Hero";
-import Loading from "./loading/Loading";
 import ListItems from "./ListItems";
+import Loading from "./loading/Loading";
 
 const App = () => {
   useEffect(async () => {

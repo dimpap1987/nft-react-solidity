@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Projects\\me\\dapp\\src\\backend\\contracts\\AwesomeNFT.sol": {
-      "lastModificationDate": 1684334823084,
-      "contentHash": "9b34de9d29265fc2f6fa60757c5780c4",
+      "lastModificationDate": 1684676442367,
+      "contentHash": "c13313b3fb1d113f29fe15ccff5d1fb8",
       "sourceName": "src/backend/contracts/AwesomeNFT.sol",
       "solcConfig": {
         "version": "0.8.11",
@@ -30,9 +30,9 @@
       },
       "imports": [
         "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/Counters.sol",
         "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+        "@1001-digital/erc721-extensions/contracts/RandomlyAssigned.sol"
       ],
       "versionPragmas": [
         ">=0.7.0 <0.9.0"
@@ -514,6 +514,80 @@
       ],
       "artifacts": [
         "IERC165"
+      ]
+    },
+    "C:\\Projects\\me\\dapp\\node_modules\\@1001-digital\\erc721-extensions\\contracts\\RandomlyAssigned.sol": {
+      "lastModificationDate": 1684537420188,
+      "contentHash": "bcd182b1cfbb965a4626b0a632b094e2",
+      "sourceName": "@1001-digital/erc721-extensions/contracts/RandomlyAssigned.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./WithLimitedSupply.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "RandomlyAssigned"
+      ]
+    },
+    "C:\\Projects\\me\\dapp\\node_modules\\@1001-digital\\erc721-extensions\\contracts\\WithLimitedSupply.sol": {
+      "lastModificationDate": 1684537546782,
+      "contentHash": "8d2d2584eb4814e69a358f1e50784915",
+      "sourceName": "@1001-digital/erc721-extensions/contracts/WithLimitedSupply.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/Counters.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "WithLimitedSupply"
       ]
     }
   }

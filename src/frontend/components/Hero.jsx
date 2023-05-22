@@ -33,7 +33,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="w-4/5 m-auto" style={{ height: "86vh" }}>
+    <section className="w-4/5 m-auto flex flex-col" style={{ height: "calc(100vh - 80px)" }}>
       <div className="flex justify-center mt-5 mb-5">
         <button
           style={{ background: "var(--primary-color--button)" }}
@@ -47,7 +47,7 @@ const Hero = () => {
       </div>
 
       {mintedNft && (
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center flex-1 mb-32">
           <NftCard
             nft={{ ...mintedNft, minted: true }}
             // nft={{

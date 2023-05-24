@@ -38,7 +38,7 @@ To run the demo locally follow these steps:
 
 `npx hardhat run scripts/deploy.js`
 
-### Upload to Ipfs throw Infura
+### Upload to Ipfs through Infura
 
 `npx hardhat run scripts/uploadToIpfs.js`
 

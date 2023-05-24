@@ -7,18 +7,18 @@ const NftCard = ({ nft }) => {
         <div className="content">
           <div className={`back ${nft.minted ? "minted" : "listed"}`}>
             <div className="back-content rounded-3xl">
-              <div className="flex justify-between w-3/4 font-mono">
-                <span className="w-3/4 overflow-x-hidden title">
-                  <strong>{nft.name}</strong>
-                </span>
-                <span>#{nft.id}</span>
-              </div>
-              <div className="p-1.5">
+              <div className="p-2.5">
                 <img
-                  className="rounded-md"
+                  className="rounded-md object-contain"
                   src={nft.image}
                   alt={"mintedNft.name"}
                 />
+              </div>
+              <div className="flex justify-between font-mono p-2 w-full">
+                <div className=" overflow-x-hidden title">
+                  <strong>{nft.name}</strong>
+                </div>
+                <div>#{nft.id}</div>
               </div>
             </div>
           </div>

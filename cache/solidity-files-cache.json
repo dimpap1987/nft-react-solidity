@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Projects\\me\\dapp\\src\\backend\\contracts\\AwesomeNFT.sol": {
-      "lastModificationDate": 1684676442367,
-      "contentHash": "c13313b3fb1d113f29fe15ccff5d1fb8",
+      "lastModificationDate": 1685105011506,
+      "contentHash": "7dcab6ba35474330c9790af1829db50b",
       "sourceName": "src/backend/contracts/AwesomeNFT.sol",
       "solcConfig": {
         "version": "0.8.11",
@@ -29,9 +29,9 @@
         }
       },
       "imports": [
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
         "@openzeppelin/contracts/access/Ownable.sol",
         "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
         "@1001-digital/erc721-extensions/contracts/RandomlyAssigned.sol"
       ],
       "versionPragmas": [

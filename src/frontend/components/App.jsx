@@ -9,7 +9,6 @@ import Loading from "./loading/Loading";
 const App = () => {
   useEffect(async () => {
     await isWalletConnected();
-    loadNfts();
   }, []);
 
   return (

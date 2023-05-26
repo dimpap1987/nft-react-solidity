@@ -8,7 +8,7 @@ const NftCard = ({ nft }) => {
         <div className="content">
           <div className={`back ${nft.minted ? "minted" : "listed"}`}>
             <div className="back-content rounded-3xl">
-              <div className="p-2.5">
+              <div className="p-2.5 h-4/5">
                 <img
                   className="rounded-md object-contain"
                   src={nft.image}

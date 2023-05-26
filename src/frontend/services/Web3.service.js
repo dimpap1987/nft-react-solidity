@@ -15,7 +15,7 @@ const isWalletConnected = async () => {
       setGlobalState("connectedAccount", accounts[0]);
     } else {
       setGlobalState("connectedAccount", null);
-      console.log("No accounts found.");
+      console.warn("No accounts found.");
     }
 
     window.ethereum.on("chainChanged", (chainId) => {
@@ -44,8 +44,7 @@ const connectWallet = async () => {
 };
 
 const reportError = (error) => {
-  console.log(error.message);
-  throw new Error("No ethereum object.");
+  throw new Error(error.message ?? "No ethereum object.");
 };
 
 const getContract = async () => {
@@ -87,6 +86,7 @@ const loadNfts = async () => {
   let nfts = await contract?.getMintedNFTs();
   nfts = formatNfts(nfts);
   setGlobalState("nfts", nfts);
+  return nfts;
 };
 
 const formatNfts = (nfts) =>

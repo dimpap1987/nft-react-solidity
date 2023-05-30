@@ -1,13 +1,13 @@
+import { ethers } from "ethers";
 import abi from "../../backend/abis/src/backend/contracts/AwesomeNFT.sol/AwesomeNFT.json";
 import address from "../../backend/metadata/smart-contract-address.json";
-import { ethers } from "ethers";
-import { getGlobalState, setAlert, setGlobalState } from "../store";
+import { getGlobalState, setGlobalState } from "../store";
 
 const isWalletConnected = async () => {
   try {
     const { ethereum } = window;
     if (!ethereum) {
-      setAlert("You need to install Metamask", error);
+      return;
     }
     const accounts = await ethereum.request({ method: "eth_accounts" });
 
@@ -43,8 +43,17 @@ const connectWallet = async () => {
   }
 };
 
-const reportError = (error) => {
-  throw new Error(error.message ?? "No ethereum object.");
+const getProviderOrSigner = async () => {
+  const { ethereum } = window;
+  if (!ethereum) {
+    return new ethers.getDefaultProvider("goerli");
+  }
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const userAccounts = await provider.listAccounts();
+  if (userAccounts.length > 0) {
+    return provider.getSigner();
+  }
+  return new ethers.providers.Web3Provider(web3.currentProvider);
 };
 
 const getContract = async () => {
@@ -98,17 +107,8 @@ const formatNfts = (nfts) =>
     timestamp: new Date(nft.timestamp.toNumber() * 1000).toLocaleString(),
   }));
 
-const getProviderOrSigner = async () => {
-  const { ethereum } = window;
-  if (!ethereum) {
-    return new ethers.providers.JsonRpcProvider("http://localhost:8545");
-  }
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const userAccounts = await provider.listAccounts();
-  if (userAccounts.length > 0) {
-    return provider.getSigner();
-  }
-  return new ethers.providers.JsonRpcProvider("http://localhost:8545");
-};
+function reportError(error) {
+  throw new Error(error?.message ?? "No ethereum object.");
+}
 
 export { isWalletConnected, connectWallet, getContract, payToMint, loadNfts };

@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { run } = require("hardhat");
 
 async function writeToFolder(folder, content) {
   if (!folder || !content) return;
@@ -14,4 +15,12 @@ async function writeToFolder(folder, content) {
   });
 }
 
-module.exports = { writeToFolder };
+async function etherscanVerify(contractAddress, constructorArguments) {
+  console.log("Verifying contract on Etherscan...");
+  await run("verify:verify", {
+    address: contractAddress,
+    constructorArguments: constructorArguments,
+  });
+}
+
+module.exports = { writeToFolder, etherscanVerify };

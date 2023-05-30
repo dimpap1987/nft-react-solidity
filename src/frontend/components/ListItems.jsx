@@ -11,13 +11,11 @@ const ListItems = () => {
   const [ipfsMetadata, setIpfsMetadata] = useState([]);
 
   useEffect(() => {
-    if (!connectedAccount) return;
     loadNfts();
   }, [connectedAccount]);
 
   useEffect(async () => {
-    if (!connectedAccount || !nfts?.length > 0) return;
-
+    if (!nfts?.length > 0) return;
     const metadataArray = await nfts.reduce(async (a, nft) => {
       return [
         ...(await a),

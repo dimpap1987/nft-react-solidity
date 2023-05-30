@@ -73,6 +73,11 @@ contract AwesomeNFT is ERC721URIStorage, Ownable, RandomlyAssigned {
         );
     }
 
+    function withdraw(address _addr) external onlyOwner {
+        uint256 balance = address(this).balance;
+        payable(_addr).transfer(balance);
+    }
+
     function tokenURI(
         uint256 _tokenId
     ) public view virtual override returns (string memory) {

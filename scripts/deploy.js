@@ -1,29 +1,19 @@
-const { writeToFolder } = require("./utils");
-const { ethers } = require("hardhat");
+const { writeToFolder, etherscanVerify } = require("./utils");
+const { ethers, network } = require("hardhat");
 
-const contract = {
+const contractValues = {
   contractName: "AwesomeNFT",
-  tokenName: "Awesome NFTs",
-  tokenSymbol: "AWSNFT",
-  tokenURI:
+  constructor: [
+    "Awesome NFTs",
+    "AWSNFT",
     "https://ipfs.io/ipfs/QmXWTYxHaEeVPrXa7FoC5sQzdnyBTtDoziTPtgmrceXrCf/",
-  totalNfts: 10,
+    10,
+  ],
 };
 
-async function main({
-  contractName,
-  tokenName,
-  tokenSymbol,
-  tokenURI,
-  totalNfts,
-}) {
-  const Contract = await ethers.getContractFactory(contractName);
-  const contract = await Contract.deploy(
-    tokenName,
-    tokenSymbol,
-    tokenURI,
-    totalNfts
-  );
+async function main() {
+  const Contract = await ethers.getContractFactory(contractValues.contractName);
+  const contract = await Contract.deploy(...contractValues.constructor);
   await contract.deployed();
 
   writeToFolder(
@@ -33,9 +23,28 @@ async function main({
   return contract;
 }
 
-main(contract)
-  .then((contract) => {
+async function handleEtherscanVerification(contract) {
+  if (network.config.chainId === 5 && process.env.ETHERSCAN_API_KEY) {
+    console.log("Waiting for block confirmations...");
+    //wait
+    await contract.deployTransaction.wait(6);
+    //verify
+    await etherscanVerify(contract.address, contractValues.constructor);
+    console.log("Etherscan verification ended...");
+  }
+}
+
+main()
+  .then(async (contract) => {
+    console.log(
+      "######################################################################"
+    );
     console.log("Deployed contract address", contract.address);
+    console.log("Network Id : " + network.config.chainId);
+    await handleEtherscanVerification(contract);
+    console.log(
+      "######################################################################"
+    );
   })
   .catch((error) => {
     console.error(error);

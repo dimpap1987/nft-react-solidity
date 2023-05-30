@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.21.5",
+    "@nomicfoundation/hardhat-verify": "^1.0.0",
     "@openzeppelin/contracts": "^4.5.0",
     "@tailwindcss/forms": "0.5.3",
     "@types/node": "^20.2.1",

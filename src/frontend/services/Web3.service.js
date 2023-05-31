@@ -46,7 +46,7 @@ const connectWallet = async () => {
 const getProviderOrSigner = async () => {
   const { ethereum } = window;
   if (!ethereum) {
-    return new ethers.getDefaultProvider("goerli");
+    return new ethers.getDefaultProvider("sepolia");
   }
   const provider = new ethers.providers.Web3Provider(ethereum);
   const userAccounts = await provider.listAccounts();

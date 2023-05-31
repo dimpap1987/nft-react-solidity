@@ -10,9 +10,14 @@ module.exports = {
       chainId: 31337,
     },
     goerli: {
-      url: process.env.API_URL,
+      url: process.env.GOERLI_API_URL,
       accounts: [process.env.PRIVATE_KEY],
       chainId: 5
+    },
+    sepolia: {
+      url: process.env.SEPOLIA_API_URL,
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 11155111
     },
   },
   solidity: {

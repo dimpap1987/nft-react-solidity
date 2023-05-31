@@ -24,7 +24,7 @@ async function main() {
 }
 
 async function handleEtherscanVerification(contract) {
-  if (network.config.chainId === 5 && process.env.ETHERSCAN_API_KEY) {
+  if ((network.config.chainId === 5 || network.config.chainId === 11155111) && process.env.ETHERSCAN_API_KEY) {
     console.log("Waiting for block confirmations...");
     //wait
     await contract.deployTransaction.wait(6);

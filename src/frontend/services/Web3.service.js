@@ -2,6 +2,9 @@ import { ethers } from "ethers";
 import abi from "../../backend/abis/src/backend/contracts/AwesomeNFT.sol/AwesomeNFT.json";
 import address from "../../backend/metadata/smart-contract-address.json";
 import { getGlobalState, setGlobalState } from "../store";
+import moment from "moment";
+
+const deployedNetwork = "sepolia";
 
 const isWalletConnected = async () => {
   try {
@@ -43,17 +46,26 @@ const connectWallet = async () => {
   }
 };
 
+const getNetworkProvider = (network) => {
+  if (network === "sepolia") {
+    return new ethers.getDefaultProvider("sepolia");
+  } else if (network === "goerli") {
+    return new ethers.getDefaultProvider("goerli");
+  }
+  return new ethers.providers.JsonRpcProvider("http://localhost:8545");
+};
+
 const getProviderOrSigner = async () => {
   const { ethereum } = window;
   if (!ethereum) {
-    return new ethers.getDefaultProvider("sepolia");
+    return getNetworkProvider(deployedNetwork);
   }
   const provider = new ethers.providers.Web3Provider(ethereum);
   const userAccounts = await provider.listAccounts();
   if (userAccounts.length > 0) {
     return provider.getSigner();
   }
-  return new ethers.providers.Web3Provider(web3.currentProvider);
+  return ethers.providers.Web3Provider(web3.currentProvider);
 };
 
 const getContract = async () => {
@@ -79,19 +91,18 @@ const payToMint = async () => {
     const connectedAccount = getGlobalState("connectedAccount");
     const contract = await getContract();
     const amount = ethers.utils.parseEther("0.001");
-    return await (
-      await contract.mint({
-        from: connectedAccount,
-        value: amount._hex,
-      })
-    ).wait();
+
+    return await contract.mint({
+      from: connectedAccount,
+      value: amount._hex,
+    });
   } catch (error) {
     reportError(error);
   }
 };
 
 const loadNfts = async () => {
-  const contract = await getContract("contract");
+  const contract = await getContract();
   let nfts = await contract?.getMintedNFTs();
   nfts = formatNfts(nfts);
   setGlobalState("nfts", nfts);
@@ -111,4 +122,47 @@ function reportError(error) {
   throw new Error(error?.message ?? "No ethereum object.");
 }
 
-export { isWalletConnected, connectWallet, getContract, payToMint, loadNfts };
+async function getMintedLogs(provider) {
+  const filter = await (await getContract()).filters.Minted();
+  return await provider.getLogs({
+    address: address.address,
+    topics: filter.topics,
+    fromBlock: 0,
+    toBlock: "latest",
+  });
+}
+
+async function loadMintedTransactions() {
+  const provider = ethers.getDefaultProvider(deployedNetwork);
+  const logs = await getMintedLogs(provider);
+
+  const transactions = await logs.reduce(async (ac, log) => {
+    const transactions = await ac;
+    const transaction = await provider.getTransaction(log.transactionHash);
+    const timestamp = await (
+      await provider.getBlock(transaction.blockHash)
+    ).timestamp;
+
+    transactions.push({
+      hash: transaction.hash,
+      from: transaction.from,
+      to: transaction.to,
+      time: moment(timestamp * 1000).fromNow(),
+      price: ethers.utils.formatEther(transaction.value),
+    });
+    return transactions;
+  }, Promise.resolve([]));
+  transactions.reverse();
+  setGlobalState("transactions", transactions);
+  return transactions;
+}
+
+export {
+  isWalletConnected,
+  connectWallet,
+  getContract,
+  payToMint,
+  loadNfts,
+  getNetworkProvider,
+  loadMintedTransactions,
+};

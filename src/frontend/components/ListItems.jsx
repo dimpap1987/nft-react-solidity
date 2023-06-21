@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { getMetadataFromIpfs } from "../services/Utils.service.js";
+import { loadNfts } from "../services/Web3.service";
 import { useGlobalState } from "../store";
 import "./ListItems.css";
-import { getMetadataFromIpfs } from "../services/Utils.service.js";
 import NftCard from "./nft-card/NftCard";
-import { loadNfts } from "../services/Web3.service";
 
 const ListItems = () => {
   const [nfts] = useGlobalState("nfts");

@@ -1,21 +1,28 @@
+import "primereact/resources/primereact.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
 import { useEffect } from "react";
-import { isWalletConnected, loadNfts } from "../services/Web3.service";
+import {
+  isWalletConnected,
+  loadMintedTransactions,
+} from "../services/Web3.service";
 import Alert from "./Alert";
 import Header from "./Header";
 import Hero from "./Hero";
-import ListItems from "./ListItems";
 import Loading from "./loading/Loading";
+import TransactionHistory from "./transaction-history/TransactionHistory";
 
 const App = () => {
   useEffect(async () => {
-    await isWalletConnected();
+    loadMintedTransactions();
+    isWalletConnected();
   }, []);
 
   return (
-    <main className="min-h-screen">
+    <main>
       <Header />
       <Hero />
-      <ListItems />
+      <TransactionHistory />
+      {/* <ListItems /> */}
       <Alert />
       <Loading />
     </main>

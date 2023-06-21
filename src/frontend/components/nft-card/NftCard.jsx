@@ -12,7 +12,7 @@ const NftCard = ({ nft }) => {
                 <img
                   className="rounded-md object-contain"
                   src={nft.image}
-                  alt={"mintedNft.name"}
+                  alt={nft.name}
                 />
               </div>
               <div className="flex justify-between font-mono p-2 w-full">

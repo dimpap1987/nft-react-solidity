@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getMetadataFromIpfsById } from "../services/Utils.service.js";
-import { loadNfts, payToMint } from "../services/Web3.service";
-import { setAlert, setGlobalState } from "../store";
+import { loadMintedTransactions, payToMint } from "../services/Web3.service";
+import { setGlobalState } from "../store";
 import NftCard from "./nft-card/NftCard";
 
 const Hero = () => {
@@ -13,28 +13,35 @@ const Hero = () => {
       msg: "Confirm your transaction...",
     });
 
-    payToMint()
-      .then(async (receipt) => {
-        // setAlert("Finished Minting...", "success");
-        const mintedId = receipt.events[0].args?.tokenId?.toString();
-        // console.log("new nft minted with id : " + mintedId);
-        const nftMetadata = await getMetadataFromIpfsById(mintedId);
-        // console.log(nftMetadata);
-        setMintedNft({
-          id: mintedId,
-          ...nftMetadata,
-        });
-        loadNfts();
-      })
-      .catch(() => setAlert("Try again later...", "error"))
-      .finally(() => {
-        setGlobalState("loading", { show: false, msg: "" });
+    try {
+      const mintTransaction = await payToMint();
+
+      setGlobalState("loading", { show: false, msg: "" });
+
+      //TOAST Transaction has been sent... with loading indicator
+      const receipt = await mintTransaction.wait();
+      //TOAST Transaction Successful
+
+      const mintedId = receipt.events[0].args?.tokenId?.toString();
+      const nftMetadata = await getMetadataFromIpfsById(mintedId);
+
+      setMintedNft({
+        id: mintedId,
+        ...nftMetadata,
       });
+      loadMintedTransactions();
+    } catch (e) {
+      //TOAST Transaction error
+      setGlobalState("loading", { show: false, msg: "" });
+    }
   };
 
   return (
-    <section className="w-4/5 m-auto flex flex-col" style={{ height: "calc(100vh - 80px)" }}>
-      <div className="flex justify-center mt-5 mb-5">
+    <section
+      className="w-4/5 m-auto flex flex-col"
+      style={{ height: "calc(78vh - 80px)" }}
+    >
+      <div className="flex justify-center mt-2 mb-2">
         <button
           style={{ background: "var(--primary-color--button)" }}
           className="shadow-xl shadow-black text-white
@@ -47,7 +54,7 @@ const Hero = () => {
       </div>
 
       {mintedNft && (
-        <div className="flex justify-center items-center flex-1 mb-32">
+        <div className="flex justify-center items-center flex-1 p-2">
           <NftCard
             nft={{ ...mintedNft, minted: true }}
             // nft={{

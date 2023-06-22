@@ -8,7 +8,7 @@ const Loading = () => {
     <div
       className={`fixed top-0 left-0 w-screen h-screen
       flex items-center justify-center bg-black 
-      bg-opacity-40 transform transition-transform
+      bg-opacity-70 transform transition-transform
       duration-200 ${loading.show ? "scale-100" : "scale-0"}`}
     >
       <div className="text-white">

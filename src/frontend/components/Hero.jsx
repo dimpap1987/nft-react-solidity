@@ -1,26 +1,41 @@
 import { useState } from "react";
 import { getMetadataFromIpfsById } from "../services/Utils.service.js";
 import { loadMintedTransactions, payToMint } from "../services/Web3.service";
-import { setGlobalState } from "../store";
+import {
+  addNotification,
+  removeNotification,
+  setGlobalState,
+  setLoading,
+} from "../store";
 import NftCard from "./nft-card/NftCard";
 
 const Hero = () => {
   const [mintedNft, setMintedNft] = useState(null);
 
   const onMintNFT = async () => {
-    setGlobalState("loading", {
-      show: true,
-      msg: "Confirm your transaction...",
-    });
-
+    setLoading({ show: true, msg: "Confirm your transaction..." });
+    let mintTransaction;
     try {
-      const mintTransaction = await payToMint();
+      mintTransaction = await payToMint();
 
-      setGlobalState("loading", { show: false, msg: "" });
+      setLoading({ show: false });
 
-      //TOAST Transaction has been sent... with loading indicator
+      addNotification({
+        id: mintTransaction.hash,
+        message: "Processing Transaction",
+        description: "It might take a few seconds...",
+        type: "spinner",
+      });
+
       const receipt = await mintTransaction.wait();
-      //TOAST Transaction Successful
+
+      //Mint Successful
+      removeNotification(mintTransaction.hash);
+      addNotification({
+        message: "Congratulations!",
+        description: "You have successfully minted your NFT",
+        type: "success",
+      });
 
       const mintedId = receipt.events[0].args?.tokenId?.toString();
       const nftMetadata = await getMetadataFromIpfsById(mintedId);
@@ -31,8 +46,17 @@ const Hero = () => {
       });
       loadMintedTransactions();
     } catch (e) {
-      //TOAST Transaction error
-      setGlobalState("loading", { show: false, msg: "" });
+      // Mint error
+      console.error(e);
+      setLoading({ show: false });
+      if (mintTransaction) {
+        removeNotification(mintTransaction?.hash);
+        addNotification({
+          message: "Ops, There was an error",
+          description: "Try again later...",
+          type: "error",
+        });
+      }
     }
   };
 

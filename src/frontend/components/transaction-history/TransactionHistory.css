@@ -12,9 +12,9 @@
 }
 
 .transaction-table th,
-.transaction-table td {
-  padding: 10px;
-  /* border: 0.7px solid whitesmoke; */
+.transaction-table td,
+.transaction-table td span {
+  padding: 7px;
   text-align: left;
   overflow: hidden;
   white-space: nowrap;
@@ -30,7 +30,6 @@ thead th {
     background-color: rgba(44, 56, 69, 0.94);
     color: #fff;
     border: 1px solid rgba(44, 56, 69, 0.54);
-  
 }
 
 

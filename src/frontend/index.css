@@ -11,6 +11,11 @@
     #00ddeb
   );
   --gold-nft--color: #ffd700;
+  --primary-color--border: linear-gradient(
+      rgb(214, 10, 190) 1%,
+      rgba(0, 255, 255, 1)
+    )
+    30%;
 }
 
 * {
@@ -78,7 +83,7 @@ video {
   -webkit-animation-duration: 2s;
   -moz-animation-duration: 2s;
   animation-duration: 2s;
-  animation-delay: 100ms
+  animation-delay: 100ms;
 }
 
 @tailwind base;

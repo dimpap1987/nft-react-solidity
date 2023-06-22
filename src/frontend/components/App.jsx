@@ -9,6 +9,7 @@ import Alert from "./Alert";
 import Header from "./Header";
 import Hero from "./Hero";
 import Loading from "./loading/Loading";
+import Notification from "./notification";
 import TransactionHistory from "./transaction-history/TransactionHistory";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <main>
       <Header />
+      <Notification />
       <Hero />
       <TransactionHistory />
       {/* <ListItems /> */}

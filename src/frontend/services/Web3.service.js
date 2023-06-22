@@ -65,7 +65,7 @@ const getProviderOrSigner = async () => {
   if (userAccounts.length > 0) {
     return provider.getSigner();
   }
-  return ethers.providers.Web3Provider(web3.currentProvider);
+  return new ethers.providers.Web3Provider(web3.currentProvider);
 };
 
 const getContract = async () => {

@@ -133,29 +133,38 @@ async function getMintedLogs(provider) {
 }
 
 async function loadMintedTransactions() {
+  console.time()
   const provider = ethers.getDefaultProvider(deployedNetwork);
   const logs = await getMintedLogs(provider);
+  const transactionHashes = logs.map((log) => log.transactionHash);
 
-  const transactions = await logs.reduce(async (ac, log) => {
-    const transactions = await ac;
-    const transaction = await provider.getTransaction(log.transactionHash);
-    const timestamp = await (
-      await provider.getBlock(transaction.blockHash)
-    ).timestamp;
+  const transactionPromises = transactionHashes.map((hash) =>
+    provider.getTransaction(hash)
+  );
+  const transactions = await Promise.all(transactionPromises);
 
-    transactions.push({
+  const blockPromises = transactions.map((transaction) =>
+    provider.getBlock(transaction.blockHash)
+  );
+  
+  const blocks = await Promise.all(blockPromises);
+
+  const formattedTransactions = transactions.map((transaction, index) => {
+    const timestamp = blocks[index].timestamp;
+    return {
       hash: transaction.hash,
       from: transaction.from,
       to: transaction.to,
       time: moment(timestamp * 1000).fromNow(),
       price: ethers.utils.formatEther(transaction.value),
-    });
-    return transactions;
-  }, Promise.resolve([]));
-  transactions.reverse();
-  setGlobalState("transactions", transactions);
-  return transactions;
+    };
+  });
+  console.timeEnd()
+  formattedTransactions.reverse();
+  setGlobalState("transactions", formattedTransactions);
+  return formattedTransactions;
 }
+
 
 export {
   isWalletConnected,

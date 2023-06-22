@@ -21,15 +21,25 @@
   text-overflow: ellipsis;
 }
 
-
 .value-column {
   width: 15%;
 }
 
 thead th {
-    background-color: rgba(44, 56, 69, 0.94);
-    color: #fff;
-    border: 1px solid rgba(44, 56, 69, 0.54);
+  background-color: rgba(44, 56, 69, 0.94);
+  color: #fff;
+  border: 1px solid rgba(44, 56, 69, 0.54);
 }
 
+tbody {
+  display: block;
+  height: 200px;
+  overflow: auto;
+}
 
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* even columns width , fix width of table too*/
+}

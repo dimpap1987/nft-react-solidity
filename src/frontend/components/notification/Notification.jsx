@@ -10,7 +10,7 @@ export default function Notification() {
   return (
     <>
       {notifications?.length > 0 && (
-        <section className="overflow-hidden fixed right-2 text-xs p-2 z-50">
+        <section className="overflow-hidden fixed right-2 text-xs p-2 pl-5 z-50">
           {notifications.map((notification) => (
             <div
               key={notification.id}

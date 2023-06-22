@@ -4,8 +4,7 @@ import { loadMintedTransactions, payToMint } from "../services/Web3.service";
 import {
   addNotification,
   removeNotification,
-  setGlobalState,
-  setLoading,
+  setLoading
 } from "../store";
 import NftCard from "./nft-card/NftCard";
 
@@ -44,7 +43,7 @@ const Hero = () => {
         id: mintedId,
         ...nftMetadata,
       });
-      loadMintedTransactions();
+      // loadMintedTransactions();
     } catch (e) {
       // Mint error
       console.error(e);
